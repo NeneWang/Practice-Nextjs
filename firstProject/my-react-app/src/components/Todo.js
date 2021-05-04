@@ -18,11 +18,11 @@ function Todo(props) {
       <h2>Title</h2>
       <div className="actions">
         <span>{props.text}</span>
-        <button className="btn" onClick={deleteHandler}>
+        <button className="btn" onClick={deleteHandler}  >
           Delete
         </button>
       </div>
-      {modalIsOpen && <Modal />}
+      {modalIsOpen && <Modal cancelHandler={closeModalHandler} confirmHandler={closeModalHandler}  />}
       {modalIsOpen && <Backdrop onClick={closeModalHandler} />}
     </div>
   );

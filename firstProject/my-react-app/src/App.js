@@ -7,9 +7,9 @@ function App() {
     <div className="App">
       <h1>My Todos</h1>
 
-      <Todo />
-      <Todo />
-      <Todo />
+      <Todo text="Learn React" />
+      <Todo text="Master React" />
+      <Todo text="Explore React"/>
     </div>
   );
 }

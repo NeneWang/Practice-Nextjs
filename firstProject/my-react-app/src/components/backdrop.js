@@ -1,7 +1,6 @@
-function Backdrop () {
-    return <div className="backdrop">
-
+function Backdrop(props){
+    return <div className="backdrop" >
     </div>
-}
-
-export default Backdrop();
+    }
+    
+    export default Backdrop;

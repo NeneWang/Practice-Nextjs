@@ -1,16 +1,15 @@
-import logo from "./logo.svg";
 import "./App.css";
+
+import Todo from "./components/Todo";
 
 function App() {
   return (
     <div className="App">
       <h1>My Todos</h1>
-      <div>
-        <h2>Title</h2>
-        <div>
-          <button>Delete</button>
-        </div>
-      </div>
+
+      <Todo />
+      <Todo />
+      <Todo />
     </div>
   );
 }

@@ -9,7 +9,7 @@ function Todo(props) {
     setModalIsOpen(true);
   }
 
-  function closeModal() {
+  function closeModalHandler() {
     setModalIsOpen(false);
   }
 
@@ -23,7 +23,7 @@ function Todo(props) {
         </button>
       </div>
       {modalIsOpen && <Modal />}
-      {modalIsOpen && <Backdrop onClick={closeModal} />}
+      {modalIsOpen && <Backdrop onClick={closeModalHandler} />}
     </div>
   );
 }

@@ -9,8 +9,9 @@ export default function MainNavigation() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Some Link</Link>
+            <Link to="/">All Meetups</Link>
           </li>
+          
           <li>
             <Link to="/new-meetup">Add New Meetup</Link>
           </li>

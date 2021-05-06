@@ -14,7 +14,18 @@ export default function NewMeetupForm() {
           <label htmlFor="image">Meetup Image</label>
           <input type="url" required id="image" />
         </div>
+        <div className={classes.control}>
+          <label htmlFor="address">Meetup address</label>
+          <input type="text" required id="address" />
+        </div>
       </form>
+      <div className={classes.control}>
+        <label htmlFor="description">Meetup description</label>
+        <textArea rows="5" required id="description"></textArea>
+      </div>
+      <div className={classes.action}>
+        <button>Add Meetup</button>
+      </div>
     </Card>
   );
 }

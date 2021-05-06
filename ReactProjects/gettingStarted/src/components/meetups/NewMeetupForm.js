@@ -8,11 +8,23 @@ export default function NewMeetupForm() {
   const imageInputRef = useRef();
   const addressInputRef = useRef();
   const descriptionInputRef = useRef();
-  
+  //   console.log("Does this log?");
   function submitHandler(event) {
+    console.log("something");
     event.preventDefault();
     const enteredTitle = titleInputRef.current.value;
-    
+    const enteredImage = imageInputRef.current.value;
+    const enteredAddress = addressInputRef.current.value;
+    const enteredDescription = descriptionInputRef.current.value;
+
+    const meetupData = {
+      title: enteredTitle,
+      image: enteredImage,
+      address: enteredAddress,
+      description: enteredDescription,
+    };
+
+    console.log(meetupData);
   }
 
   return (
@@ -24,20 +36,27 @@ export default function NewMeetupForm() {
         </div>
         <div className={classes.control}>
           <label htmlFor="image">Meetup Image</label>
-          <input type="url" required id="image"  ref={imageInputRef} />
+          <input type="url" required id="image" ref={imageInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="address">Meetup address</label>
-          <input type="text" required id="address" ref={addressInputRef}  />
+          <input type="text" required id="address" ref={addressInputRef} />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor="description">Meetup description</label>
+          <textarea
+            rows="5"
+            required
+            id="description"
+            ref={descriptionInputRef}
+          ></textarea>
+        </div>
+        <div className={classes.actions}>
+          <button value="submit" type="submit" className={classes.button}>
+            Add Meetup
+          </button>
         </div>
       </form>
-      <div className={classes.control}>
-        <label htmlFor="description">Meetup description</label>
-        <textArea rows="5" required id="description" ref={descriptionInputRef} ></textArea>
-      </div>
-      <div className={classes.action}>
-        <button>Add Meetup</button>
-      </div>
     </Card>
   );
 }

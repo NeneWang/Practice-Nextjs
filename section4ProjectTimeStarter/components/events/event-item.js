@@ -6,7 +6,7 @@ export default function EventItem(props) {
   const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
-    year: numeric,
+    year: 'numeric',
   });
 
   const formattedAddress = location.replace(", ", "\n");

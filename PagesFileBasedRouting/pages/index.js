@@ -10,7 +10,7 @@ export default function HomePage() {
           <Link href="/portfolio">My Portfolio</Link>
         </li>
         <li>
-          <Link href="/client"> Clients </Link>
+          <Link href="/clients"> Clients </Link>
         </li>
       </ul>
     </div>

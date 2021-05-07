@@ -7,9 +7,21 @@ import FavoritesContext from "../../store/favorites-context";
 export default function MeetupItem(props) {
   const favoritesCtx = useContext(FavoritesContext);
 
-  const itemIsFavorite = favoritesCtx.itemIsFavorite;
+  const itemIsFavorite = favoritesCtx.itemIsFavorite(props.id);
 
-  function toggleFavoritesStatusHandler() {}
+  function toggleFavoritesStatusHandler() {
+    if (itemIsFavorite) {
+      favoritesCtx.removeFavorite(props.id);
+    } else {
+      favoritesCtx.addFavorite({
+        id: props.id,
+        title: props.title,
+        description: props.description,
+        image: props.image,
+        address: props.address,
+      });
+    }
+  }
   return (
     <Card>
       <li className={classes.item}>

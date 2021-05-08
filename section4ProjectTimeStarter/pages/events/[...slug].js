@@ -1,7 +1,14 @@
+
+
 import React from "react";
+
+import { Fragment } from "react";
 import { useRouter } from "next/router";
 import { getFilteredEvents } from "../../dummy-data";
+
+
 import EventList from '../../components/events/event-list';
+import ResultsTitle from '../../components/events/results-title';
 
 export default function FilteredEventsPage() {
   const router = useRouter();

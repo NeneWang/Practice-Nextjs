@@ -9,4 +9,6 @@ export default function Button(props) {
       <a className={classes.btn}> {props.children}</a>
     </Link>
   );
+
+  return <button  className={classes.btn} onCLick={porps.onCLick} >{props.children}</button>
 }

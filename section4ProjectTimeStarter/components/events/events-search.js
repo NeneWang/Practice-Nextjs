@@ -1,17 +1,21 @@
 import React from "react";
 import Button from "../ui/button";
 
+import classes from "./events-search.module.css";
+
 export default function EventSearch(props) {
   return (
-    <form>
-      <div>
-        <label htmlFor="year">Year</label>
-        <select name="" id="year">
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-        </select>
+    <form className={classes.form}>
+      <div className={classes.controls}>
+        <div className={classes.control}>
+          <label htmlFor="year">Year</label>
+          <select name="" id="year">
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+          </select>
+        </div>
       </div>
-      <div>
+      <div className={classes.control} >
         <label htmlFor="month">
           <select name="" id="">
             <option value="1">January</option>

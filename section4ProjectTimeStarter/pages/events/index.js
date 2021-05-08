@@ -6,6 +6,9 @@ import EventSearch from "../../components/events/events-search";
 
 export default function AllEventsPage() {
   const events = getAllEvents();
+
+  function findEventsHandler(year, month) {}
+
   return (
     <Fragment>
       <EventSearch />

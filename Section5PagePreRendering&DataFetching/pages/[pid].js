@@ -7,6 +7,10 @@ import { Fragment } from "react";
 export default function productDetailPage(props) {
   const { loadedProduct } = props;
 
+  if (!loadedProduct) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <Fragment>
       <h1>{loadedProduct.title}</h1>
@@ -23,8 +27,13 @@ export async function getStaticProps(context) {
   const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
   const jsonData = await fs.readFile(filePath);
   const data = JSON.parse(jsonData);
-//   console.log(data);
+  //   console.log(data);
   const product = data.products.find((product) => product.id === productId);
+
+  if (!product) {
+    return { notFound: true };
+  }
+
   return {
     props: {
       loadedProduct: product,
@@ -38,10 +47,15 @@ export async function getStaticPaths() {
   const data = await JSON.parse(jsonData);
   console.log(data.products[0]);
   const ids = data.products.map((product) => product.id);
-//   console.log(ids);
+  //   console.log(ids);
   const pathWithParams = ids.map((id) => ({ params: { pid: id } }));
+
+  //   if (!product) {
+  //     return { notFound: true };
+  //   }
+
   return {
     paths: pathWithParams,
-    fallback: false,
+    fallback: true,
   };
 }

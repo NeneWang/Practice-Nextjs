@@ -23,7 +23,7 @@ export async function getStaticProps(context) {
   const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
   const jsonData = await fs.readFile(filePath);
   const data = JSON.parse(jsonData);
-
+//   console.log(data);
   const product = data.products.find((product) => product.id === productId);
   return {
     props: {
@@ -33,12 +33,15 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
+  const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
+  const jsonData = await fs.readFile(filePath);
+  const data = await JSON.parse(jsonData);
+  console.log(data.products[0]);
+  const ids = data.products.map((product) => product.id);
+//   console.log(ids);
+  const pathWithParams = ids.map((id) => ({ params: { pid: id } }));
   return {
-    paths: [
-      { params: { pid: "p1" } },
-      { params: { pid: "p2" } },
-      { params: { pid: "p3" } },
-    ],
+    paths: pathWithParams,
     fallback: false,
   };
 }

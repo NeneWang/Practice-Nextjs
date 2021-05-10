@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 
 import useSWR from "swr";
 
-export default function LastSalesPage() {
-  const [sales, setSales] = useState([]);
-//   const [isLoading, setIsLoading] = useState(false);
+export default function LastSalesPage(props) {
+  const [sales, setSales] = useState(props.sales);
+  //   const [isLoading, setIsLoading] = useState(false);
 
   const { data, error } = useSWR(
     "https://descartable-server-default-rtdb.firebaseio.com/sales.json"
@@ -25,31 +25,10 @@ export default function LastSalesPage() {
     }
   }, [data]);
 
-  //   useEffect(() => {
-  //     setIsLoading(true);
-  //     fetch("https://descartable-server-default-rtdb.firebaseio.com/sales.json")
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         const transformSales = [];
-  //         for (const key in data) {
-  //           transformSales.push({
-  //             id: key,
-  //             username: data[key].username,
-  //             volume: data[key].volume,
-  //           });
-  //         }
-  //         console.log("Trasform sales: ");
-  //         console.log(transformSales);
-  //         setSales(transformSales);
-  //         setIsLoading(false);
-  //       });
-  //   }, []);
-
   if (error) {
     return <p>failed to load</p>;
   }
-  if (!data || !sales) {
+  if (!data && !sales) {
     return <p>Loading...</p>;
   }
 
@@ -62,4 +41,27 @@ export default function LastSalesPage() {
       ))}
     </ul>
   );
+}
+
+export async function getStaticProps() {
+  const response = await fetch(
+    "https://descartable-server-default-rtdb.firebaseio.com/sales.json"
+  );
+  const data = await response.json();
+  console.log(data);
+  const transformSales = [];
+  for (const key in data) {
+    transformSales.push({
+      id: key,
+      username: data[key].username,
+      volume: data[key].volume,
+    });
+  }
+
+  return {
+    props: {
+      sales: transformSales,
+    },
+    revalidate: 10,
+  };
 }

@@ -1,37 +1,56 @@
 import link from "next/link";
 import { useEffect, useState } from "react";
 
+import useSWR from "swr";
+
 export default function LastSalesPage() {
   const [sales, setSales] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+//   const [isLoading, setIsLoading] = useState(false);
+
+  const { data, error } = useSWR(
+    "https://descartable-server-default-rtdb.firebaseio.com/sales.json"
+  );
 
   useEffect(() => {
-    setIsLoading(true);
-    fetch("https://descartable-server-default-rtdb.firebaseio.com/sales.json")
-      .then((response) => response.json())
-      .then((data) => {
-          console.log(data)
-        const transformSales = [];
-        for (const key in data) {
-          transformSales.push({
-            id: key,
-            username: data[key].username,
-            volume: data[key].volume,
-          });
-        }
-        console.log("Trasform sales: " );
-        console.log(transformSales)
-        setSales(transformSales);
-        setIsLoading(false);
-      });
-  }, []);
+    const transformSales = [];
+    if (data) {
+      for (const key in data) {
+        transformSales.push({
+          id: key,
+          username: data[key].username,
+          volume: data[key].volume,
+        });
+      }
+      setSales(transformSales);
+    }
+  }, [data]);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
+  //   useEffect(() => {
+  //     setIsLoading(true);
+  //     fetch("https://descartable-server-default-rtdb.firebaseio.com/sales.json")
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         const transformSales = [];
+  //         for (const key in data) {
+  //           transformSales.push({
+  //             id: key,
+  //             username: data[key].username,
+  //             volume: data[key].volume,
+  //           });
+  //         }
+  //         console.log("Trasform sales: ");
+  //         console.log(transformSales);
+  //         setSales(transformSales);
+  //         setIsLoading(false);
+  //       });
+  //   }, []);
+
+  if (error) {
+    return <p>failed to load</p>;
   }
-
-  if (!sales) {
-    return <p>No Data Yet</p>;
+  if (!data || !sales) {
+    return <p>Loading...</p>;
   }
 
   return (

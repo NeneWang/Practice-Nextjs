@@ -50,9 +50,6 @@ export async function getStaticPaths() {
   //   console.log(ids);
   const pathWithParams = ids.map((id) => ({ params: { pid: id } }));
 
-  //   if (!product) {
-  //     return { notFound: true };
-  //   }
 
   return {
     paths: pathWithParams,

@@ -1,6 +1,7 @@
-export function getAllEvents() {
+import _ from "lodash";
+export async function getAllEvents() {
   const response = await fetch(
-    "https://descartable-server-default-rtdb.firebaseio.com//events.json"
+    "https://descartable-server-default-rtdb.firebaseio.com/events.json"
   );
   const data = await response.json();
 

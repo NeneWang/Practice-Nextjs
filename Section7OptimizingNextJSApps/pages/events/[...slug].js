@@ -34,19 +34,10 @@ function FilteredEventsPage(props) {
     }
   }, [data]);
 
-  const filteredYear = filterData[0];
-  const filteredMonth = filterData[0];
-
-  const numYear = +filteredYear;
-  const numMonth = +filteredMonth;
-
-  const pageHeadedData = (
+  let pageHeadData = (
     <Head>
       <title>Filtered Events</title>
-      <meta
-        name="description"
-        content={`All events for ${numMonth}/${numYear}`}
-      />
+      <meta name="description" content={`All list of filtered events.`} />
     </Head>
   );
 
@@ -65,6 +56,15 @@ function FilteredEventsPage(props) {
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
 
+  const pageHeadedData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name="description"
+        content={`All events for ${numMonth}/${numYear}`}
+      />
+    </Head>
+  );
   if (
     isNaN(numYear) ||
     isNaN(numMonth) ||

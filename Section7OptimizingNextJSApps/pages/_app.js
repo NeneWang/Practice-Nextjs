@@ -6,6 +6,7 @@ function MyApp({ Component, pageProps }) {
     <Layout>
       <Head>
         <title>Title latest elements</title>
+        <meta name="description" content="NextJS Events" />
       </Head>
       <Head>
         <meta name="viewport" content="initial-scale=1.0, width=device-width"  />

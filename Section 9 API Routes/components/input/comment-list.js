@@ -6,7 +6,7 @@ function CommentList(props) {
     <ul className={classes.comments}>
       {/* Render list of comments - fetched from API */}
       {items.map((item) => (
-        <li ke={item.id}>
+        <li ke={item._id}>
           <p>{item.text}</p>
           <div>
             By <address>{item.name}</address>

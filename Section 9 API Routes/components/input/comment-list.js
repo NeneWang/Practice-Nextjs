@@ -1,6 +1,7 @@
-import classes from './comment-list.module.css';
+import classes from "./comment-list.module.css";
 
-function CommentList() {
+function CommentList(props) {
+  const { items } = props;
   return (
     <ul className={classes.comments}>
       {/* Render list of comments - fetched from API */}

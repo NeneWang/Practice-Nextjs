@@ -6,6 +6,9 @@ function HomePage() {
 
   function submitFormHandler(event) {
     event.preventDefault();
+
+    const enteredEmail = emailInputRef.current.value;
+    const enteredFeedback = feedbackInputRef.current.value;
   }
 
   return (

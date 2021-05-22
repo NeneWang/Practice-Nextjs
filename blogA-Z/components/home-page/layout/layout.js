@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 
-import MainNavigation from './main-navigation';
+// import MainNavigation from './main-navigation';
 
-export default function layout(props) {
+export default function Layout(props) {
   return (
     <Fragment>
       <main>{props.children}</main>

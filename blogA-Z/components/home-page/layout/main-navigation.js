@@ -5,7 +5,9 @@ export default function MainNavigation() {
   return (
     <header>
       <Link href="/">
-        <Logo />
+        <a href="">
+          <Logo />
+        </a>
       </Link>
       <nav>
         <ul>

@@ -1,6 +1,10 @@
 import { connect, MongoClient } from "mongodb";
 
-import { connectDatabase, insertDocument } from "../../../helpers/db-util";
+import {
+  connectDatabase,
+  insertDocument,
+  getAllDocuments,
+} from "../../../helpers/db-util";
 
 async function handler(req, res) {
   const eventId = req.query.eventId;
@@ -24,6 +28,7 @@ async function handler(req, res) {
       text.trim() === ""
     ) {
       res.status(422).json({ message: "Invalid input." });
+      client.close();
       return;
     }
 
@@ -38,24 +43,21 @@ async function handler(req, res) {
 
     try {
       result = await insertDocument(client, "comments", newComment);
+      newComment._id = result.insertedId;
+
+      res.status(201).json({ message: "Added comment.", comment: newComment });
     } catch (error) {
       res.status(500).json({ message: "Inserting comment failed!" });
     }
-
-    newComment._id = result.insertedId;
-
-    res.status(201).json({ message: "Added comment.", comment: newComment });
   }
 
   if (req.method === "GET") {
-    const db = client.db();
-    const documents = await db
-      .collection("comments")
-      .find()
-      .sort({ _id: -1 })
-      .toArray();
-
-    res.status(200).json({ comments: documents });
+    try {
+      const documents = await getAllDocuments(client, "comments", { _id: -1 });
+    } catch (error) {
+      res.status(500).json({ message: "Getting Comments failed." });
+      return;
+    }
   }
 
   client.close();

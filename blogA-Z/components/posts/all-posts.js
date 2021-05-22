@@ -1,6 +1,7 @@
 import React from "react";
 
 import classes from './all-posts.module.css';
+import PostGrid from "./posts-grid";
 
 export default function AllPosts(props ) {
   return (

@@ -10,6 +10,7 @@ export function NotificationContextProvider(props) {
   const [activeNotification, setActiveNotification] = useState();
 
   useEffect(() => {
+    //If it is stated and or is success or error... even after the other notifications
     if (
       activeNotification &&
       (activeNotification.status === 'success' ||

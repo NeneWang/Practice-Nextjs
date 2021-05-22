@@ -3,6 +3,8 @@ import classes from './posts-grid.module.css'
 
 function PostGrid(props) {
   const { posts } = props;
+
+  
   return (
     <ul className={classes.grid}>
       {posts.map((post) => (
@@ -12,4 +14,4 @@ function PostGrid(props) {
   );
 }
 
-export default PostsGrid;
+export default PostGrid;

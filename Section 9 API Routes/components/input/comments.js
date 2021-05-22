@@ -9,9 +9,11 @@ import NotificationContext from "../../store/notification-context";
 function Comments(props) {
   const { eventId } = props;
 
+  const notificationCtx = useContext(NotificationContext);
+
   const [showComments, setShowComments] = useState(false);
   const [comments, setComments] = useState([]);
-  const notificationCtx = useContext(NotificationContext);
+  const [isFetchingComments, setIsFetchingComments] = useState(false);
 
   useEffect(() => {
     if (showComments) {
@@ -19,6 +21,7 @@ function Comments(props) {
         .then((response) => response.json())
         .then((data) => {
           setComments(data.comments);
+          setIsFetchingComments(false);
         });
     }
   }, [showComments]);
@@ -42,18 +45,20 @@ function Comments(props) {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((response) => response.json()).then((data) => {
+    })
+      .then((response) => response.json())
+      .then((data) => {
         notificationCtx.showNotification({
-          title: 'Success!',
-          message: 'Successfully registered a new comment!',
-          status: 'success',
+          title: "Success!",
+          message: "Successfully registered a new comment!",
+          status: "success",
         });
       })
       .catch((error) => {
         notificationCtx.showNotification({
-          title: 'Error!',
-          message: error.message || 'Something went wrong!',
-          status: 'error',
+          title: "Error!",
+          message: error.message || "Something went wrong!",
+          status: "error",
         });
       })
       .then((data) => console.log(data));
@@ -65,7 +70,8 @@ function Comments(props) {
         {showComments ? "Hide" : "Show"} Comments
       </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
-      {showComments && <CommentList items={comments} />}
+      {showComments && !isFetchingComments && <CommentList items={comments} />}
+      {showComments && isFetchingComments && <p>Loading...</p> }
     </section>
   );
 }

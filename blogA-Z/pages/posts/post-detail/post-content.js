@@ -1,3 +1,5 @@
+import PostHeader from './post-header'
+
 const DUMMY_POSTS = {
   slug: "getting-started-with-nextjs",
   title: "Getting Stated with NextJS",

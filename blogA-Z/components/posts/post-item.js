@@ -10,6 +10,8 @@ function PostItem(props) {
       year: 'numeric'
   });
 
+  const imagePath = '/images/posts';
+
   return (
     <li className={classes.post}>
       <Link>

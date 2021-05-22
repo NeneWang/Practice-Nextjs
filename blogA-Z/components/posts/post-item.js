@@ -13,6 +13,7 @@ function PostItem(props) {
   });
 
   const imagePath = `/images/posts/${slug}/${image}`;
+  console.log(imagePath);
   const linkPath = `/posts/${slug}`;
 
   return (
@@ -24,7 +25,7 @@ function PostItem(props) {
           </div>
           <div className={classes.content}>
             <h3>{title}</h3>
-            <time>{formattedDate}</time>
+            <time>{formatedDate}</time>
             <p>{excerpt}</p>
           </div>
         </a>

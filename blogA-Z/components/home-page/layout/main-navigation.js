@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 
 import classes from "./main-navigation.module.css";
-import logo from './logo';
+import Logo from './logo';
 
 export default function MainNavigation() {
   return (

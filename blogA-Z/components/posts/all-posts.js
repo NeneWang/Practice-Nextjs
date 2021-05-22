@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
 
-export default function AllPosts() {
-    return (
-        <div>
-            
-        </div>
-    )
+import classes from './all-posts.module.css';
+
+export default function AllPosts(props ) {
+  return (
+    <section className={classes.posts}>
+      <h1>All Posts</h1>
+      <PostGrid posts={props.posts} />
+    </section>
+  );
 }

@@ -4,8 +4,8 @@ import React from "react";
 
 export default function hero() {
   return (
-    <section className={classess.hero}>
-      <div className={classess.image}>
+    <section className={classes.hero}>
+      <div className={classes.image}>
         <Image
           src="/images/site/max.png"
           alt="An image showing Max"

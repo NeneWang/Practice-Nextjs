@@ -1,15 +1,11 @@
 import { Fragment } from "react";
 
-import Hero from '../components/home-page/hero'
+import Hero from "../components/home-page/hero";
 
-function HomePage() {
+export default function index() {
   return (
     <Fragment>
       <Hero />
     </Fragment>
   );
 }
-
-export default HomePage();
-
-// 1) Hero => Present ourselves

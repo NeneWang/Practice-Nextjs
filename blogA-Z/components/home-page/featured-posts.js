@@ -5,7 +5,7 @@ function FeaturedPosts(props) {
   return (
     <section className={classes.latest}>
       <h2>Featured Posts</h2>
-      <PostGrid key={post.slug} posts={post} />
+      <PostGrid key={props.slug} posts={props.posts} />
     </section>
   );
 }

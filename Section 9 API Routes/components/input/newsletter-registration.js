@@ -1,11 +1,11 @@
-import { useRef, useContext } from "react";
+import { useRef, useContext } from 'react';
 
-import classes from "./newsletter-registration.module.css";
-import notificationContext from "../../store/notification-context";
+import classes from './newsletter-registration.module.css';
+import NotificationContext from '../../store/notification-context';
 
 function NewsletterRegistration() {
   const emailInputRef = useRef();
-  const notificationCtx = useContext(notificationContext);
+  const notificationCtx = useContext(NotificationContext);
 
   function registrationHandler(event) {
     event.preventDefault();
@@ -13,39 +13,39 @@ function NewsletterRegistration() {
     const enteredEmail = emailInputRef.current.value;
 
     notificationCtx.showNotification({
-      title: " Signing Up",
-      message: " Registering for newsletter",
-      status: "pending",
+      title: 'Signing up...',
+      message: 'Registering for newsletter.',
+      status: 'pending',
     });
 
-    fetch("/api/newsletter", {
-      method: "POST",
+    fetch('/api/newsletter', {
+      method: 'POST',
       body: JSON.stringify({ email: enteredEmail }),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     })
       .then((response) => {
         if (response.ok) {
           return response.json();
         }
-        response.json().then((data) => {
-          throw new Error(data.message || "Fall back: Something went wrong");
+
+        return response.json().then((data) => {
+          throw new Error(data.message || 'Something went wrong!');
         });
-        //Will cause to reject as well.
       })
       .then((data) => {
         notificationCtx.showNotification({
-          title: " Success!!",
-          message: " Successfully registered for newsletter!",
-          status: "success",
+          title: 'Success!',
+          message: 'Successfully registered for newsletter!',
+          status: 'success',
         });
       })
       .catch((error) => {
         notificationCtx.showNotification({
-          title: "Error!",
-          message: "Something went wrong!" | error.message,
-          status: "error",
+          title: 'Error!',
+          message: error.message || 'Something went wrong!',
+          status: 'error',
         });
       });
   }
@@ -56,10 +56,10 @@ function NewsletterRegistration() {
       <form onSubmit={registrationHandler}>
         <div className={classes.control}>
           <input
-            type="email"
-            id="email"
-            placeholder="Your email"
-            aria-label="Your email"
+            type='email'
+            id='email'
+            placeholder='Your email'
+            aria-label='Your email'
             ref={emailInputRef}
           />
           <button>Register</button>

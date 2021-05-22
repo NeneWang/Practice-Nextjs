@@ -25,7 +25,15 @@ function NewsletterRegistration() {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        response.json().then((data) => {
+          throw new Error(data.message || "Fall back: Something went wrong");
+        });
+        //Will cause to reject as well.
+      })
       .then((data) => {
         notificationCtx.showNotification({
           title: " Success!!",

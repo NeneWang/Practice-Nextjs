@@ -1,3 +1,5 @@
+import ReactMarkdown from 'react-markdown';
+
 import PostHeader from './post-header'
 import classes from './post-content.module.css';
 

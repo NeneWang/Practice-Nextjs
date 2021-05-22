@@ -1,20 +1,18 @@
-import React from "react";
+import AllPosts from '../../components/posts/all-posts';
+import { getAllPosts } from '../../lib/posts-util';
 
-import AllPosts from "../../components/posts/all-posts";
-import { getAllPosts, getFeaturedPosts } from "../../lib/posts-util";
-
-export default function AllPostsPage(props) {
-  return <AllPosts posts={props.posts} />;
-
+function AllPostsPage(props) {
+  return <AllPosts posts={props.posts} />
 }
 
-
 export function getStaticProps() {
-  const allPosts = getFeaturedPosts();
+  const allPosts = getAllPosts();
 
   return {
     props: {
-      post: allPosts,
-    },
+      posts: allPosts
+    }
   };
 }
+
+export default AllPostsPage;

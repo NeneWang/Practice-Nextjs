@@ -35,8 +35,8 @@ function NewsletterRegistration() {
       })
       .catch((error) => {
         notificationCtx.showNotification({
-          title: "Signing up...",
-          message: "Registering for newsletter.",
+          title: "Error!",
+          message: "Something went wrong!" | error.message,
           status: "error",
         });
       });

@@ -19,7 +19,7 @@ export default function PostContent() {
   return (
     <article className={classes.content} >
       <PostHeader title={DUMMY_POSTS.title} image={imagePath} />
-      {DUMMY_POSTS.content}
+      <ReactMarkdown>{DUMMY_POSTS.content}</ReactMarkdown>
     </article>
   );
 }

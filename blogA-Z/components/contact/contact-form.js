@@ -1,7 +1,7 @@
 import classes from "./contact-form.module.css";
 function ContactForm() {
   return (
-    <section>
+    <section className={classes.contact} >
       <h1>How can I help you?</h1>
       <form className={classes.form} action="">
         <div className={classes.controls}>
@@ -11,9 +11,17 @@ function ContactForm() {
           </div>
 
           <div className={classes.control}>
-            <label htmlFor="email">Your Email</label>
-            <input type="email" id="name" required />
+            <label htmlFor="name">Your Name</label>
+            <input type="text" id="name" required />
           </div>
+        </div>
+        <div className={classes.control}>
+          <label htmlFor="message">Your message</label>
+          <textarea id="message" rows="5"></textarea>
+        </div>
+
+        <div clasName={classes.action}>
+          <button>Send Message</button>
         </div>
       </form>
     </section>

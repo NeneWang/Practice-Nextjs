@@ -20,7 +20,8 @@ async function ContactForm() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredName, setEnteredName] = useState("");
   const [enteredMessage, setEnteredMessage] = useState("");
-  const [requestStatus, setRequestStaus] = useState();
+  const [requestStatus, setRequestStatus] = useState();
+  const [requestError, setRequestError] = useState();
 
   async function sendContactData(contactDetails) {
     const reponse = await fetch("/api/contact", {
@@ -47,14 +48,40 @@ async function ContactForm() {
         email: enteredEmail,
         name: enteredName,
         message: enteredMessage,
-        
       });
-      setRequestStaus('success');
+      setRequestStatus("success");
     } catch (error) {
-      setRequestStaus("error");
+      setRequestError(error.message);
+      setRequestStatus("error");
     }
 
-    setRequestStaus("success");
+    setRequestStatus("success");
+  }
+
+  let notification;
+
+  if (rquestStatus === "pending") {
+    notification = {
+      status: "Pending",
+      title: "Sending message...",
+      message: "Your message is on its way!",
+    };
+  }
+
+  if (requestStatus === "success") {
+    notification = {
+      status: "success",
+      title: "Success!",
+      message: " Message sent successfully!",
+    };
+  }
+
+  if (requestStatus === "error") {
+    notification = {
+      status: "error",
+      title: "Error!",
+      message: requestError,
+    };
   }
 
   return (
@@ -99,6 +126,14 @@ async function ContactForm() {
           <button>Send Message</button>
         </div>
       </form>
+
+      {notification && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
+      )}
     </section>
   );
 }

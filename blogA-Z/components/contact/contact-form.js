@@ -11,6 +11,11 @@ function ContactForm() {
 
     fetch("/api/contact", {
       method: "POST",
+      body: JSON.stringify({
+          email: enteredEmail,
+          name: enteredName,
+          message: enteredMessage
+      }),
     });
   }
 
@@ -37,13 +42,19 @@ function ContactForm() {
               id="name"
               required
               value={enteredName}
-              onChange={(event) => setEnteredMessage(event.target.value)}
+              onChange={(event) => setEnteredName(event.target.value)}
             />
           </div>
         </div>
         <div className={classes.control}>
           <label htmlFor="message">Your message</label>
-          <textarea id="message" rows="5"></textarea>
+          <textarea
+            id="message"
+            rows="5"
+            required
+            value={enteredMessage}
+            onChange={(event) => setEnteredMessage(event.target.value)}
+          ></textarea>
         </div>
 
         <div clasName={classes.action}>

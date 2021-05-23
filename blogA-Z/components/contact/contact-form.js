@@ -32,7 +32,13 @@ function ContactForm() {
 
           <div className={classes.control}>
             <label htmlFor="name">Your Name</label>
-            <input type="text" id="name" required />
+            <input
+              type="text"
+              id="name"
+              required
+              value={enteredName}
+              onChange={(event) => setEnteredMessage(event.target.value)}
+            />
           </div>
         </div>
         <div className={classes.control}>

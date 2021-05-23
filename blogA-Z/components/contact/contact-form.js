@@ -1,26 +1,60 @@
 import { useState } from "react";
 import classes from "./contact-form.module.css";
+import Notification from "../ui/notification";
 
-function ContactForm() {
+async function sendContactData(contactDetails) {
+  const reponse = await fetch("/api/contact", {
+    method: "POST",
+    body: JSON.stringify({
+      email: enteredEmail,
+      name: enteredName,
+      message: enteredMessage,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+}
+
+async function ContactForm() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredName, setEnteredName] = useState("");
   const [enteredMessage, setEnteredMessage] = useState("");
+  const [requestStatus, setRequestStaus] = useState();
 
-  function sendMessageHandler(event) {
+  async function sendContactData(contactDetails) {
+    const reponse = await fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify(contactDetails),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await reponse.json();
+    if (!reponse.ok) {
+      throw new Error(data.message || "Something went wrong");
+    }
+  }
+
+  async function sendMessageHandler(event) {
     event.preventDefault();
 
-    fetch("/api/contact", {
-      method: "POST",
-      body: JSON.stringify({
-          email: enteredEmail,
-          name: enteredName,
-          message: enteredMessage
-      }),
-      headers: {
-          'Content-Type': 'application/json',
-          
-      }
-    });
+    setRequestStatus("pending");
+
+    try {
+      await sendContactData({
+        email: enteredEmail,
+        name: enteredName,
+        message: enteredMessage,
+        
+      });
+      setRequestStaus('success');
+    } catch (error) {
+      setRequestStaus("error");
+    }
+
+    setRequestStaus("success");
   }
 
   return (

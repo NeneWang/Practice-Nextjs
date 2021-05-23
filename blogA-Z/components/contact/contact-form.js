@@ -16,6 +16,10 @@ function ContactForm() {
           name: enteredName,
           message: enteredMessage
       }),
+      headers: {
+          'Content-Type': 'application/json',
+          
+      }
     });
   }
 

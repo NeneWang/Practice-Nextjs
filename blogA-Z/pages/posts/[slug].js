@@ -25,7 +25,7 @@ export function getStaticProps(context) {
 export function getStaticPaths() {
   return {
     paths: [],
-    fallback: 'blocking',
+    fallback: "blocking",
   };
 }
 

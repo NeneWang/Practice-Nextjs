@@ -1,5 +1,5 @@
 import React from "react";
-import { getPostData } from "../../lib/posts-util";
+import { getPostData, getPostsFiles } from "../../lib/posts-util";
 
 import PostContent from "./post-detail/post-content";
 import { getPostData } from "../../lib/posts-util";
@@ -23,8 +23,12 @@ export function getStaticProps(context) {
 }
 
 export function getStaticPaths() {
+  const postFilenames = getPostsFiles();
+
+  const slugs = postFilenames.map((filename) => filename.replace(/\.md$/, ""));
+
   return {
-    paths: [],
+    paths: slugs.map((slug) => ({ params: { slug: slug } })),
     fallback: "blocking",
   };
 }

@@ -29,7 +29,7 @@ export function getPostData(fileName) {
 export function getAllPosts() {
   const postFiles = getPostsFiles(); 
 
-//   const postFiles = fs.readdirSync(postsDirectory);
+//   const postFiles = fs.readdirSync(po stsDirectory);
 
   const allPosts = postFiles.map((postFile) => {
     return getPostData(postFile);

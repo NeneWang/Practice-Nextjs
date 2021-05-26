@@ -18,6 +18,7 @@ export default NextAuth({
           const user = usersCollection.findOne({ email: credentials.email });
 
           if (!user) {
+            client.close();
             throw new Error("No user found!");
           }
 
@@ -26,12 +27,12 @@ export default NextAuth({
             user.password
           );
           if (!isValid) {
+            client.close();
             throw new Error("Could not log you in!");
           }
 
-          return { email: user.email };
-
           client.close();
+          return { email: user.email };
         },
       },
     }),

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-export default function handler() {
-    return (
-        <div>
-            
-        </div>
-    )
+import { connectToDatabase } from "../../../lib/db";
+
+export default async function handler(req, res) {
+  const client = await connectToDatabase();
+  const db = client.db();
+  db.collection("users");
 }

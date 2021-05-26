@@ -29,7 +29,7 @@ function AuthForm() {
     setIsLogin((prevState) => !prevState);
   }
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;

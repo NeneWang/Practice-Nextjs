@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "mongodb": "^3.6.8",
     "next": "10.0.6",
     "next-auth": "^3.23.3",

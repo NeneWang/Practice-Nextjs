@@ -1,4 +1,5 @@
 import { getSession } from "next-auth/client";
+import { connectToDatabase } from "../../../lib/db";
 
 async function handler(req, res) {
   if (req.method !== "PATCH") {
@@ -15,6 +16,11 @@ async function handler(req, res) {
   const userEmail = session.user.email;
   const oldPassword = req.body.oldPassword;
   const newPassword = req.body.newPassword;
+
+  const client = await connectToDatabase();
+  const usersCollection = client.db().collection('users');
+
+  usersCollection.findOne({email: userEmail});
 
 }
 

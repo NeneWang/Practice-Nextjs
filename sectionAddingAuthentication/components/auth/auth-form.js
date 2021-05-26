@@ -6,13 +6,13 @@ async function createUser(email, password) {
     method: "POST",
     body: JSON.stringify({ email, password }),
     header: {
-      'Content-Type': 'application/json'
-    }
+      "Content-Type": "application/json",
+    },
   });
 
   const data = await response.json();
 
-  if(!response.ok){
+  if (!response.ok) {
     throw new Error(data.messa || "Something went wrong!");
   }
 
@@ -20,6 +20,9 @@ async function createUser(email, password) {
 }
 
 function AuthForm() {
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
   const [isLogin, setIsLogin] = useState(true);
 
   function switchAuthModeHandler() {
@@ -29,10 +32,15 @@ function AuthForm() {
   function submitHandler(event) {
     event.preventDefault();
 
+    const enteredEmail = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
+
+    // optional: Add validation
+
     if (isLogin) {
       // Log user in
     } else {
-      createUser();
+      createUser(enteredEmail, enteredPassword);
     }
   }
 
@@ -42,11 +50,11 @@ function AuthForm() {
       <form>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required />
+          <input type="email" id="email" required ref={emailInputRef} />
         </div>
         <div className={classes.control}>
           <label htmlFor="password">Your Password</label>
-          <input type="password" id="password" required />
+          <input type="password" id="password" required ref={emailInputRef} />
         </div>
         <div className={classes.actions}>
           <button>{isLogin ? "Login" : "Create Account"}</button>

@@ -7,8 +7,7 @@ async function handler(req, res) {
   if (req.method !== "PATCH") {
     return;
   }
-
-  const session = getSession({ req: req });
+  const session = await getSession({ req: req });
 
   if (!session) {
     res.status(401).json({ message: "Not authenticated!" });
@@ -42,7 +41,7 @@ async function handler(req, res) {
 
   const result = await usersCollection.updateOne(
     { email: userEmail },
-    { $set: { password: newPassword } }
+    { $set: { password: hashedPassword } }
   );
 
   client.close();

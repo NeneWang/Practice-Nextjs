@@ -11,7 +11,7 @@ function HomePage(props) {
       <Head>
         <title>Max' Blog</title>
         <meta
-          name='description'
+          name='Description Page'
           content='I post about programming and web development!'
         />
       </Head>

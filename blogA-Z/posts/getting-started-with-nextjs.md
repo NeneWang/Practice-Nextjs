@@ -6,7 +6,7 @@ excerpt: NextJS is a the React framework for production - it makes building full
 isFeatured: true
 ---
 
-NextJS is a **framework for ReactJS**.
+NextJS is a ***framework for ReactJS***.
 
 Wait a second ... a "framework" for React? Isn't React itself already a framework for JavaScript?
 
